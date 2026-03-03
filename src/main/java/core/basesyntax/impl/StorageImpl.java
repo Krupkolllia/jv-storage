@@ -8,7 +8,7 @@ public class StorageImpl<K, V> implements Storage<K, V> {
     private static final Object EMPTY = new Object();
     private final K[] keys;
     private final V[] values;
-    private int currentSize = -1;
+    private int currentSize;
 
     @SuppressWarnings("unchecked")
     public StorageImpl() {
@@ -16,6 +16,8 @@ public class StorageImpl<K, V> implements Storage<K, V> {
         values = (V[]) new Object[STORAGE_SIZE];
         Arrays.fill(keys, EMPTY);
         Arrays.fill(values, null);
+
+        currentSize = -1;
     }
 
     @Override
