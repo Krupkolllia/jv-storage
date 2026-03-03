@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 public class StorageImpl<K, V> implements Storage<K, V> {
     private static final int STORAGE_SIZE = 10;
-    private static final Object EMPTY = new Object();
     private final K[] keys;
     private final V[] values;
     private int currentSize;
@@ -14,8 +13,6 @@ public class StorageImpl<K, V> implements Storage<K, V> {
     public StorageImpl() {
         keys = (K[]) new Object[STORAGE_SIZE];
         values = (V[]) new Object[STORAGE_SIZE];
-        Arrays.fill(keys, EMPTY);
-        Arrays.fill(values, null);
 
         currentSize = -1;
     }
@@ -50,7 +47,7 @@ public class StorageImpl<K, V> implements Storage<K, V> {
     }
 
     private int findKeyIndex(K key) {
-        for (int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < currentSize; i++) {
             if (key == keys[i] || (keys[i] != null && keys[i].equals(key))) {
                 return i;
             }
